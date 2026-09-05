@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ShuvoniX - The Digital Multiverse</title>
+<meta name="description" content="ShuvoniX - Building Smarter, Scaling Faster, Validating Better. Transform your complex requirements into seamless digital products." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo" onclick="navigateTo('home')">
+        <div class="logo-mark">SX</div>
+        <span>ShuvoniX</span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a data-page="home" onclick="navigateTo('home')">Home</a>
+        <a data-page="about" onclick="navigateTo('about')">About</a>
+        <a data-page="services" onclick="navigateTo('services')">Services</a>
+        <a data-page="portfolio" onclick="navigateTo('portfolio')">Portfolio</a>
+        <a data-page="blog" onclick="navigateTo('blog')">Blog</a>
+        <a data-page="contact" onclick="navigateTo('contact')">Contact</a>
+      </div>
+      <a class="nav-cta" onclick="navigateTo('contact')">Get in Touch</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="navigateTo('home');closeMobileMenu()">Home</a>
+  <a onclick="navigateTo('about');closeMobileMenu()">About</a>
+  <a onclick="navigateTo('services');closeMobileMenu()">Services</a>
+  <a onclick="navigateTo('portfolio');closeMobileMenu()">Portfolio</a>
+  <a onclick="navigateTo('blog');closeMobileMenu()">Blog</a>
+  <a onclick="navigateTo('contact');closeMobileMenu()">Contact</a>
+</div>
+
+<main id="app"><!-- Pages load here --></main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">SX</div>
+          <span>ShuvoniX</span>
+        </div>
+        <p>The Digital Multiverse. Building smarter, scaling faster, and validating better for teams that demand excellence.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a onclick="navigateTo('services')">UX/UI Design</a>
+        <a onclick="navigateTo('services')">Software QA</a>
+        <a onclick="navigateTo('services')">Web Development</a>
+        <a onclick="navigateTo('services')">Applied AI</a>
+        <a onclick="navigateTo('services')">Brand Design</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a onclick="navigateTo('about')">About</a>
+        <a onclick="navigateTo('portfolio')">Portfolio</a>
+        <a onclick="navigateTo('blog')">Blog</a>
+        <a onclick="navigateTo('contact')">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a onclick="navigateTo('faq')">FAQ</a>
+        <a onclick="navigateTo('process')">Process</a>
+        <a onclick="navigateTo('benefits')">Benefits</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ShuvoniX. All rights reserved.</span>
+      <span>The Digital Multiverse</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
