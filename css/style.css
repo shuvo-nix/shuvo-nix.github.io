@@ -51,7 +51,7 @@
   --g3:rgba(244,114,182,0.07);
 }
 [data-theme="dark"] .gradient-text{background:linear-gradient(115deg,#f4f4f8 0%,#a78bfa 45%,#22d3ee 75%,#f472b6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
 ::selection{background:rgba(108,92,231,0.18)}
 body{
   font-family:'Inter',sans-serif;
@@ -59,6 +59,9 @@ body{
   color:var(--text);
   line-height:1.6;
   overflow-x:hidden;
+  overflow-x:clip;
+  position:relative;
+  width:100%;
   -webkit-font-smoothing:antialiased;
   transition:background-color .35s,color .35s;
 }
@@ -85,16 +88,19 @@ nav{
   transition:border-color .3s,background .3s;
 }
 nav.scrolled{border-bottom-color:var(--border);background:var(--nav-bg-scrolled)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;cursor:pointer}
-.logo-mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff;font-size:.82rem;box-shadow:0 6px 16px rgba(108,92,231,0.35)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;cursor:pointer;min-width:0}
+.logo-img{height:34px;width:auto;display:block}
+.logo-img.logo-light{display:none}
+[data-theme="dark"] .logo-img.logo-light{display:block}
+[data-theme="dark"] .logo-img.logo-dark{display:none}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-dim);transition:color .25s;position:relative;cursor:pointer}
 .nav-links a:hover{color:var(--text)}
 .nav-links a.active{color:var(--text)}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;border-radius:2px;background:var(--accent);transition:width .3s}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-right{display:flex;align-items:center;gap:10px}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .nav-cta{display:inline-block;padding:10px 22px;border-radius:999px;background:var(--btn-bg);color:var(--btn-text);font-weight:600;font-size:.87rem;transition:transform .25s,box-shadow .25s;cursor:pointer}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(13,18,32,0.22)}
 .theme-toggle{width:40px;height:40px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:all .25s;flex-shrink:0}
@@ -111,7 +117,7 @@ nav.scrolled{border-bottom-color:var(--border);background:var(--nav-bg-scrolled)
 .reveal.in{opacity:1;transform:none}
 
 /* ---------- Hero ---------- */
-.hero{min-height:100vh;display:flex;align-items:center;padding:160px 0 90px;position:relative}
+.hero{min-height:100vh;display:flex;align-items:center;padding:160px 0 90px;position:relative;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center}
 .hero-content{min-width:0}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);font-size:.8rem;font-weight:500;color:var(--text-dim);margin-bottom:26px}
@@ -129,8 +135,8 @@ h1.hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.3rem,4.6v
 
 .hero-visual-wrap{position:relative;min-width:0}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
-.hero-orb-1{width:380px;height:380px;background:rgba(108,92,231,0.16);top:-70px;right:-70px}
-.hero-orb-2{width:280px;height:280px;background:rgba(14,165,201,0.12);bottom:-50px;left:-30px}
+.hero-orb-1{width:340px;height:340px;background:rgba(108,92,231,0.16);top:-40px;right:-30px}
+.hero-orb-2{width:260px;height:260px;background:rgba(14,165,201,0.12);bottom:-30px;left:-20px}
 .hero-card{border-radius:26px;padding:38px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);position:relative;z-index:1}
 .hero-card-tag{font-size:.74rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin-bottom:16px}
 .hero-card h2{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;line-height:1.2;margin-bottom:10px;letter-spacing:-0.02em}
@@ -358,4 +364,5 @@ footer{padding:72px 0 28px;border-top:1px solid var(--border);background:var(--s
   .btn{width:100%;justify-content:center}
   .hero-cta{flex-direction:column}
   h1.hero-title{font-size:2.15rem}
+  .logo-img{height:30px}
 }
