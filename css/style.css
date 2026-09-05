@@ -90,7 +90,7 @@ nav{
 nav.scrolled{border-bottom-color:var(--border);background:var(--nav-bg-scrolled)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{display:flex;align-items:center;cursor:pointer;min-width:0}
-.logo-img{height:34px;width:auto;display:block}
+.logo-img{height:30px;width:auto;display:block}
 .logo-img.logo-light{display:none}
 [data-theme="dark"] .logo-img.logo-light{display:block}
 [data-theme="dark"] .logo-img.logo-dark{display:none}
@@ -364,5 +364,5 @@ footer{padding:72px 0 28px;border-top:1px solid var(--border);background:var(--s
   .btn{width:100%;justify-content:center}
   .hero-cta{flex-direction:column}
   h1.hero-title{font-size:2.15rem}
-  .logo-img{height:30px}
+  .logo-img{height:28px}
 }
