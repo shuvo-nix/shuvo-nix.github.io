@@ -28,6 +28,24 @@ function initPageScripts(page) {
   if (page === 'portfolio') initFilters();
 }
 
+// Theme toggle (icon only, remembers choice)
+var themeToggle = document.getElementById('themeToggle');
+var SUN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+var MOON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
+function renderThemeIcon() { themeToggle.innerHTML = isDark() ? SUN_ICON : MOON_ICON; }
+themeToggle.addEventListener('click', function() {
+  if (isDark()) {
+    document.documentElement.removeAttribute('data-theme');
+    try { localStorage.setItem('sx-theme', 'light'); } catch (e) {}
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    try { localStorage.setItem('sx-theme', 'dark'); } catch (e) {}
+  }
+  renderThemeIcon();
+});
+renderThemeIcon();
+
 // Scroll reveal animations
 function initReveals() {
   var els = document.querySelectorAll('.reveal');
