@@ -1,10 +1,10 @@
-<!-- ========== PORTFOLIO PAGE - edit project titles, tags, descriptions and image URLs below ========== -->
+<!-- ========== PORTFOLIO PAGE - each card opens projects/<slug>.html ========== -->
 
 <div class="page-header">
   <div class="container">
     <span class="section-label">Our Work</span>
     <h1>Projects built with <span class="gradient-text">care and precision</span></h1>
-    <p>A selection of work across design, development, QA, and brand. More available on request.</p>
+    <p>A selection of work across design, development, QA, and brand. Click any project to read the full case study.</p>
   </div>
 </div>
 
@@ -21,7 +21,7 @@
 
     <div class="portfolio-grid">
 
-      <div class="portfolio-item" data-category="ux">
+      <div class="portfolio-item" data-category="ux" onclick="openProject('finlytic')">
         <div class="portfolio-img">
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt="Finlytic fintech dashboard" loading="lazy" />
         </div>
@@ -29,10 +29,11 @@
           <div class="portfolio-tag">UX/UI Design</div>
           <h4>Finlytic - Fintech Dashboard Redesign</h4>
           <p>Rebuilt the information architecture and UI of a banking analytics dashboard, cutting task completion time for finance teams.</p>
+          <span class="card-link">View case study &#8594;</span>
         </div>
       </div>
 
-      <div class="portfolio-item" data-category="web">
+      <div class="portfolio-item" data-category="web" onclick="openProject('auranest')">
         <div class="portfolio-img">
           <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80" alt="Auranest e-commerce storefront" loading="lazy" />
         </div>
@@ -40,10 +41,11 @@
           <div class="portfolio-tag">Web Development</div>
           <h4>Auranest - E-commerce Storefront</h4>
           <p>Designed and developed a conversion-focused storefront with CMS integration, responsive layouts, and full accessibility compliance.</p>
+          <span class="card-link">View case study &#8594;</span>
         </div>
       </div>
 
-      <div class="portfolio-item" data-category="qa">
+      <div class="portfolio-item" data-category="qa" onclick="openProject('medico-go')">
         <div class="portfolio-img">
           <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" alt="Medico Go health app testing" loading="lazy" />
         </div>
@@ -51,10 +53,11 @@
           <div class="portfolio-tag">Software QA</div>
           <h4>Medico Go - Health App Testing</h4>
           <p>Ran 400+ manual test cases across iOS and Android with structured bug tracking, catching 60+ critical issues before public release.</p>
+          <span class="card-link">View case study &#8594;</span>
         </div>
       </div>
 
-      <div class="portfolio-item" data-category="brand">
+      <div class="portfolio-item" data-category="brand" onclick="openProject('nomad-coffee')">
         <div class="portfolio-img">
           <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=80" alt="Nomad Coffee brand identity" loading="lazy" />
         </div>
@@ -62,10 +65,11 @@
           <div class="portfolio-tag">Brand Design</div>
           <h4>Nomad Coffee Co. - Brand Identity</h4>
           <p>Complete visual identity with brand storytelling, packaging direction, and a launch-ready design system for a specialty coffee startup.</p>
+          <span class="card-link">View case study &#8594;</span>
         </div>
       </div>
 
-      <div class="portfolio-item" data-category="ux">
+      <div class="portfolio-item" data-category="ux" onclick="openProject('skillpath')">
         <div class="portfolio-img">
           <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80" alt="Skillpath SaaS onboarding wireframes" loading="lazy" />
         </div>
@@ -73,10 +77,11 @@
           <div class="portfolio-tag">UX/UI Design</div>
           <h4>Skillpath - SaaS Onboarding Flow</h4>
           <p>Redesigned the onboarding journey with new microcopy, progressive disclosure, and usability-tested prototypes that lifted activation.</p>
+          <span class="card-link">View case study &#8594;</span>
         </div>
       </div>
 
-      <div class="portfolio-item" data-category="web">
+      <div class="portfolio-item" data-category="web" onclick="openProject('insight-engine')">
         <div class="portfolio-img">
           <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80" alt="Insight Engine AI analytics automation" loading="lazy" />
         </div>
@@ -84,6 +89,7 @@
           <div class="portfolio-tag">Applied AI</div>
           <h4>Insight Engine - AI Analytics Automation</h4>
           <p>Built an automated reporting pipeline with n8n that turns raw product data into a live analytics dashboard for a growing SaaS team.</p>
+          <span class="card-link">View case study &#8594;</span>
         </div>
       </div>
 

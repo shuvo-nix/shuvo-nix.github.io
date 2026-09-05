@@ -1,4 +1,4 @@
-<!-- ========== BLOG PAGE - edit post titles, categories, dates, excerpts and image URLs below ========== -->
+<!-- ========== BLOG PAGE - 12 posts, each card links to posts/<slug>.html ========== -->
 
 <div class="page-header">
   <div class="container">
@@ -12,45 +12,123 @@
   <div class="container">
     <div class="blog-grid">
 
-      <div class="blog-card">
-        <div class="blog-img">
-          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80" alt="Code on a laptop screen" loading="lazy" />
-        </div>
+      <div class="blog-card" onclick="openPost('qa-launch-checklist')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80" alt="Code on a laptop screen" loading="lazy" /></div>
         <div class="blog-body">
-          <div class="blog-meta">
-            <span class="cat">Software QA</span>
-            <span>Sep 2026</span>
-          </div>
+          <div class="blog-meta"><span class="cat">Software QA</span><span>Sep 2026</span></div>
           <h4>The QA Checklist I Run Before Every Launch</h4>
           <p>Shipping fast means nothing if the product breaks on day one. Here is the exact pre-launch checklist I use to catch critical issues before users ever see them.</p>
+          <span class="card-link">Read article &#8594;</span>
         </div>
       </div>
 
-      <div class="blog-card">
-        <div class="blog-img">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80" alt="Abstract AI artwork" loading="lazy" />
-        </div>
+      <div class="blog-card" onclick="openPost('n8n-workflows')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80" alt="Abstract AI artwork" loading="lazy" /></div>
         <div class="blog-body">
-          <div class="blog-meta">
-            <span class="cat">Applied AI</span>
-            <span>Sep 2026</span>
-          </div>
+          <div class="blog-meta"><span class="cat">Applied AI</span><span>Sep 2026</span></div>
           <h4>5 n8n Workflows That Save Me 10 Hours a Week</h4>
           <p>From automated client onboarding to content distribution, these five workflows handle the repetitive work so I can focus on design and strategy.</p>
+          <span class="card-link">Read article &#8594;</span>
         </div>
       </div>
 
-      <div class="blog-card">
-        <div class="blog-img">
-          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80" alt="Pen and paper writing" loading="lazy" />
-        </div>
+      <div class="blog-card" onclick="openPost('seo-automation')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Analytics charts on a laptop" loading="lazy" /></div>
         <div class="blog-body">
-          <div class="blog-meta">
-            <span class="cat">UX Writing</span>
-            <span>Aug 2026</span>
-          </div>
+          <div class="blog-meta"><span class="cat">Applied AI</span><span>Aug 2026</span></div>
+          <h4>SEO Automation: Rank While You Sleep</h4>
+          <p>Meta checks, internal links, rank tracking, and content briefs can all run on autopilot. Here is what I automate and what I never hand to a machine.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('microcopy-ux-upgrade')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80" alt="Pen and paper writing" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">UX Writing</span><span>Aug 2026</span></div>
           <h4>Why Microcopy Is the Cheapest UX Upgrade You Can Ship</h4>
           <p>Buttons, error messages, and empty states shape how users feel about your product. A few careful word choices can lift conversion without a redesign.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('design-systems')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=900&q=80" alt="Design tools and color palettes" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">UX Design</span><span>Aug 2026</span></div>
+          <h4>Design Systems: Build Once, Ship Forever</h4>
+          <p>A good design system is not a luxury for big teams. Even a solo founder ships faster and breaks less with one. Here is what a V1 actually needs.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('responsive-design-foundation')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80" alt="Web design on a laptop" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">Web Dev</span><span>Jul 2026</span></div>
+          <h4>Responsive Design Is Not a Feature, It Is the Foundation</h4>
+          <p>Over half your traffic is on a phone. If you design desktop first and squeeze it down later, users can tell. Here is how to build mobile first in practice.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('web-accessibility-basics')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=900&q=80" alt="Multiple devices on a desk" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">Web Dev</span><span>Jul 2026</span></div>
+          <h4>Web Accessibility Basics Every Site Should Pass</h4>
+          <p>Accessibility is not a nice-to-have. This five minute audit covers contrast, alt text, focus states, labels, and keyboard nav, the checks that matter most.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('usability-testing-budget')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=80" alt="UX sketching on paper" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">UX Design</span><span>Jul 2026</span></div>
+          <h4>Usability Testing on a Budget: 5 Users Is Enough</h4>
+          <p>You do not need a research lab to find your biggest usability problems. Five users and one hour per session will surface most of what is broken.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('qa-testing-types')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80" alt="Colorful code on a screen" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">Software QA</span><span>Jun 2026</span></div>
+          <h4>Regression vs Smoke vs Sanity: QA Types Explained</h4>
+          <p>These three testing types get confused constantly, even by developers. Here is a plain language breakdown and when to run each one.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('error-messages-ux')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80" alt="Writing with coffee" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">UX Writing</span><span>Jun 2026</span></div>
+          <h4>Error Messages That Don't Make Users Panic</h4>
+          <p>Something went wrong is the laziest sentence in software. Good error messages say what happened, why, and what to do next. Here is the formula.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('brand-consistency')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=900&q=80" alt="Brand color swatches" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">Brand Design</span><span>May 2026</span></div>
+          <h4>Brand Consistency: Why Your Startup Looks Different Everywhere</h4>
+          <p>Your pitch deck, website, and social profiles should feel like one company. Here is where consistency usually breaks and the one page fix.</p>
+          <span class="card-link">Read article &#8594;</span>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openPost('email-automation-sequences')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=900&q=80" alt="Marketing analytics workspace" loading="lazy" /></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="cat">Applied AI</span><span>May 2026</span></div>
+          <h4>Email Automation Sequences That Actually Get Replies</h4>
+          <p>Most automated emails feel robotic and get ignored. This four email skeleton keeps the human tone while the machine does the timing.</p>
+          <span class="card-link">Read article &#8594;</span>
         </div>
       </div>
 

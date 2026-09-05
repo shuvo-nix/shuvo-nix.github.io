@@ -1,24 +1,56 @@
-// Page router: loads files from pages/ into #app, retries once on failure
-async function navigateTo(page) {
-  const app = document.getElementById('app');
-  let html = null;
-  for (let attempt = 0; attempt < 2 && html === null; attempt++) {
+// Core loader with one retry (self-heals during deployments)
+async function loadHtml(path) {
+  for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const res = await fetch('pages/' + page + '.html');
-      if (res.ok) html = await res.text();
+      const res = await fetch(path);
+      if (res.ok) return await res.text();
     } catch (e) {}
-    if (html === null) await new Promise(function(r) { setTimeout(r, 800); });
+    await new Promise(function(r) { setTimeout(r, 800); });
   }
+  return null;
+}
+
+function renderHtml(html) {
+  const app = document.getElementById('app');
+  app.innerHTML = '<div class="page-section">' + html + '</div>';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  initReveals();
+}
+
+function renderFallback() {
+  const app = document.getElementById('app');
+  app.innerHTML = '<div style="min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px"><div><h2 style="font-family:Space Grotesk,sans-serif;margin-bottom:12px">Page is loading</h2><p style="color:var(--text-dim)">The site was just updated. Please refresh once.</p><button class="btn btn-primary" style="margin-top:24px" onclick="location.reload()">Refresh</button></div></div>';
+}
+
+// Page navigation
+async function navigateTo(page, skipPush) {
+  const html = await loadHtml('pages/' + page + '.html');
   if (html !== null) {
-    app.innerHTML = '<div class="page-section">' + html + '</div>';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    renderHtml(html);
     updateActiveNav(page);
     initPageScripts(page);
-    initReveals();
-    try { history.pushState({ page: page }, '', '#' + page); } catch (e) {}
-  } else {
-    app.innerHTML = '<div style="min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px"><div><h2 style="font-family:Space Grotesk,sans-serif;margin-bottom:12px">Page is loading</h2><p style="color:var(--text-dim)">The site was just updated. Please refresh once.</p><button class="btn btn-primary" style="margin-top:24px" onclick="location.reload()">Refresh</button></div></div>';
-  }
+    if (!skipPush) { try { history.pushState({}, '', '#' + page); } catch (e) {} }
+  } else { renderFallback(); }
+}
+
+// Blog post pages
+async function openPost(slug) {
+  const html = await loadHtml('posts/' + slug + '.html');
+  if (html !== null) {
+    renderHtml(html);
+    updateActiveNav('blog');
+    try { history.pushState({}, '', '#post/' + slug); } catch (e) {}
+  } else { renderFallback(); }
+}
+
+// Project case study pages
+async function openProject(slug) {
+  const html = await loadHtml('projects/' + slug + '.html');
+  if (html !== null) {
+    renderHtml(html);
+    updateActiveNav('portfolio');
+    try { history.pushState({}, '', '#project/' + slug); } catch (e) {}
+  } else { renderFallback(); }
 }
 
 function updateActiveNav(page) {
@@ -57,9 +89,7 @@ if (themeToggle) {
 // Scroll reveal animations with failsafe: never leave content hidden
 function initReveals() {
   var els = document.querySelectorAll('.reveal');
-  function revealAll() {
-    els.forEach(function(el) { el.classList.add('in'); });
-  }
+  function revealAll() { els.forEach(function(el) { el.classList.add('in'); }); }
   if (!('IntersectionObserver' in window)) { revealAll(); return; }
   try {
     var observer = new IntersectionObserver(function(entries) {
@@ -141,9 +171,12 @@ function initFilters() {
   });
 }
 
-// Back/forward support + initial load
-window.addEventListener('popstate', function(e) {
-  if (e.state && e.state.page) navigateTo(e.state.page);
-});
-var initialPage = location.hash.replace('#', '') || 'home';
-navigateTo(initialPage);
+// Hash routing: supports #page, #post/slug, #project/slug + back/forward
+function routeFromHash() {
+  var hash = location.hash.replace('#', '');
+  if (hash.indexOf('post/') === 0 && hash.length > 5) { openPost(hash.slice(5)); return; }
+  if (hash.indexOf('project/') === 0 && hash.length > 8) { openProject(hash.slice(8)); return; }
+  navigateTo(hash || 'home');
+}
+window.addEventListener('popstate', routeFromHash);
+routeFromHash();

@@ -1,0 +1,28 @@
+<!-- BLOG POST: Regression vs Smoke vs Sanity: QA Types Explained -->
+<article class="article">
+  <div class="container">
+    <div class="article-wrap">
+      <a class="back-link" onclick="navigateTo('blog')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Blog</a>
+      <div class="portfolio-tag">Software QA</div>
+      <h1 class="article-title">Regression vs Smoke vs Sanity: QA Types Explained</h1>
+      <div class="article-meta"><span>Jun 2026</span><span>&middot;</span><span>5 min read</span></div>
+      <div class="article-img"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=80" alt="Colorful code on a screen" /></div>
+      <div class="article-body">
+        <p>Ask three developers to define smoke, sanity, and regression testing and you will get four answers. These terms get blurred constantly, but the differences matter, because each one answers a different question about your build.</p>
+        <h2>Smoke Testing: Is It Alive?</h2>
+        <p>A smoke test is the first shallow pass after a new build. Does the app open, does the login work, do the main screens load? If a smoke test fails, you stop everything, because deeper testing on a broken build is wasted time. Think of it as checking a car starts before you inspect the brakes.</p>
+        <h2>Sanity Testing: Did the Fix Work?</h2>
+        <p>Sanity testing is narrow and targeted. A bug was fixed or a small feature landed, and you verify that specific change behaves correctly, plus its immediate surroundings. It answers one question: is this particular change sane enough to move forward?</p>
+        <h2>Regression Testing: Did We Break Anything Else?</h2>
+        <p>Regression is the deep sweep. You re-run your existing test cases to confirm that new code did not quietly break old features. It is the most time consuming of the three, and the one that protects your product's reputation, because users forgive a missing new feature far more easily than a feature that used to work.</p>
+        <h2>Which One, When</h2>
+        <p>Smoke after every build, sanity after every fix, regression before every release. Keep your smoke suite tiny, your sanity checks focused, and your regression suite documented in a tool like QA Touch so anyone on the team can run it. Simple rhythm, fewer surprises.</p>
+      </div>
+      <div class="cta-box" style="margin-top:48px">
+        <h2>Need structure in your QA?</h2>
+        <p>I write test cases, build regression suites, and set up bug tracking that actually gets used.</p>
+        <button class="btn btn-primary" onclick="navigateTo('contact')">Get in Touch</button>
+      </div>
+    </div>
+  </div>
+</article>
