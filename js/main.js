@@ -1,18 +1,23 @@
-// Page router: loads files from pages/ into #app
+// Page router: loads files from pages/ into #app, retries once on failure
 async function navigateTo(page) {
   const app = document.getElementById('app');
-  try {
-    const res = await fetch('pages/' + page + '.html');
-    if (!res.ok) throw new Error('not found');
-    const html = await res.text();
+  let html = null;
+  for (let attempt = 0; attempt < 2 && html === null; attempt++) {
+    try {
+      const res = await fetch('pages/' + page + '.html');
+      if (res.ok) html = await res.text();
+    } catch (e) {}
+    if (html === null) await new Promise(function(r) { setTimeout(r, 800); });
+  }
+  if (html !== null) {
     app.innerHTML = '<div class="page-section">' + html + '</div>';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     updateActiveNav(page);
     initPageScripts(page);
     initReveals();
-    history.pushState({ page: page }, '', '#' + page);
-  } catch (e) {
-    app.innerHTML = '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px"><div><h2 style="font-family:Space Grotesk,sans-serif;margin-bottom:12px">Page coming soon</h2><p style="color:var(--text-dim)">This section is being built. Check back shortly.</p><button class="btn btn-primary" style="margin-top:24px" onclick="navigateTo(\'home\')">Back to Home</button></div></div>';
+    try { history.pushState({ page: page }, '', '#' + page); } catch (e) {}
+  } else {
+    app.innerHTML = '<div style="min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px"><div><h2 style="font-family:Space Grotesk,sans-serif;margin-bottom:12px">Page is loading</h2><p style="color:var(--text-dim)">The site was just updated. Please refresh once.</p><button class="btn btn-primary" style="margin-top:24px" onclick="location.reload()">Refresh</button></div></div>';
   }
 }
 
@@ -23,9 +28,11 @@ function updateActiveNav(page) {
 }
 
 function initPageScripts(page) {
-  if (page === 'faq') initFaq();
-  if (page === 'contact') initContactForm();
-  if (page === 'portfolio') initFilters();
+  try {
+    if (page === 'faq') initFaq();
+    if (page === 'contact') initContactForm();
+    if (page === 'portfolio') initFilters();
+  } catch (e) {}
 }
 
 // Theme toggle (icon only, remembers choice)
@@ -33,35 +40,39 @@ var themeToggle = document.getElementById('themeToggle');
 var SUN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
 var MOON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
-function renderThemeIcon() { themeToggle.innerHTML = isDark() ? SUN_ICON : MOON_ICON; }
-themeToggle.addEventListener('click', function() {
-  if (isDark()) {
-    document.documentElement.removeAttribute('data-theme');
-    try { localStorage.setItem('sx-theme', 'light'); } catch (e) {}
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    try { localStorage.setItem('sx-theme', 'dark'); } catch (e) {}
-  }
-  renderThemeIcon();
-});
-renderThemeIcon();
+if (themeToggle) {
+  themeToggle.innerHTML = isDark() ? SUN_ICON : MOON_ICON;
+  themeToggle.addEventListener('click', function() {
+    if (isDark()) {
+      document.documentElement.removeAttribute('data-theme');
+      try { localStorage.setItem('sx-theme', 'light'); } catch (e) {}
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      try { localStorage.setItem('sx-theme', 'dark'); } catch (e) {}
+    }
+    themeToggle.innerHTML = isDark() ? SUN_ICON : MOON_ICON;
+  });
+}
 
-// Scroll reveal animations
+// Scroll reveal animations with failsafe: never leave content hidden
 function initReveals() {
   var els = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) {
+  function revealAll() {
     els.forEach(function(el) { el.classList.add('in'); });
-    return;
   }
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(function(el) { observer.observe(el); });
+  if (!('IntersectionObserver' in window)) { revealAll(); return; }
+  try {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el) { observer.observe(el); });
+  } catch (e) { revealAll(); return; }
+  setTimeout(revealAll, 1400);
 }
 
 // Mobile menu
@@ -69,22 +80,25 @@ var menuBtn = document.getElementById('menuBtn');
 var mobileMenu = document.getElementById('mobileMenu');
 var mobileClose = document.getElementById('mobileClose');
 function closeMobileMenu() {
-  mobileMenu.classList.remove('open');
+  if (mobileMenu) mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
 }
-menuBtn.addEventListener('click', function() {
-  var opening = !mobileMenu.classList.contains('open');
-  mobileMenu.classList.toggle('open');
-  document.body.style.overflow = opening ? 'hidden' : '';
-});
-mobileClose.addEventListener('click', closeMobileMenu);
+if (menuBtn && mobileMenu) {
+  menuBtn.addEventListener('click', function() {
+    var opening = !mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = opening ? 'hidden' : '';
+  });
+}
+if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeMobileMenu();
 });
 
 // Nav shadow on scroll
 window.addEventListener('scroll', function() {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  var nav = document.getElementById('navbar');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
 });
 
 // FAQ accordion
