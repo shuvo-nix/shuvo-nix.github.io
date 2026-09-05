@@ -6,7 +6,7 @@
 <title>ShuvoniX - The Digital Multiverse</title>
 <meta name="description" content="ShuvoniX - Building Smarter, Scaling Faster, Validating Better. Transform your complex requirements into seamless digital products." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css?v=2" />
 </head>
 <body>
 
@@ -25,15 +25,20 @@
         <a data-page="blog" onclick="navigateTo('blog')">Blog</a>
         <a data-page="contact" onclick="navigateTo('contact')">Contact</a>
       </div>
-      <a class="nav-cta" onclick="navigateTo('contact')">Get in Touch</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+      <div class="nav-right">
+        <a class="nav-cta" onclick="navigateTo('contact')">Get in Touch</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
   <a onclick="navigateTo('home');closeMobileMenu()">Home</a>
   <a onclick="navigateTo('about');closeMobileMenu()">About</a>
   <a onclick="navigateTo('services');closeMobileMenu()">Services</a>
@@ -83,6 +88,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
